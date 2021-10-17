@@ -1,0 +1,102 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl", crossorigin="anonymous")
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js", integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0", crossorigin="anonymous")
+    title #{title}
+    //- script(src="/views/sendmoney.js" )
+    //- include sendmoney.js
+  body 
+    include layout 
+
+    h1 Transfer
+
+    form#form(action =`/transfer/${transfers.id}` method = "POST")
+      .container 
+        label.lab(for="sendername") SENDER :: 
+        select#sendern(name="sendername")
+          option(selected,value=`${transfers.name}`) #{transfers.name}
+          //- option(value="Mack") Mack 
+          //- option(value="Rossie") Rossie 
+          //- option(value="Xiao") Xiao 
+          //- option(value="Bei") Bei 
+          //- option(value="Benny") Benny 
+          //- option(value="Reema") Reema 
+          //- option(value="Kevin") Kevin 
+          //- option(value="Christle") Christle 
+          //- option(value="Denie") Denie 
+
+      //- button.btn#findb(type="submit" onclick = "find()") Find
+      
+
+      //- form#form(action=`/transfer/${transfers.id}`, method="post") 
+          //- option(value="Lisa") Lisa
+      
+      label.lab(for="senderbalance") BALANCE :: 
+      select#senderbalance(name="senderbalance")
+        option(selected, value=`${transfers.balance}`) #{transfers.balance} 
+
+        label.lab(for="credituser") Transfer To:
+
+      .container 
+        label.lab(for="receivername") RECEIVER :: 
+        select#credituser(name="receivername")
+          option(selected) Select Receiver 
+          option(value="Lisa") Lisa 
+          option(value="Mack") Mack 
+          option(value="Rossie") Rossie 
+          option(value="Xiao") Xiao 
+          option(value="Bei") Bei 
+          option(value="Benny") Benny 
+          option(value="Reema") Reema 
+          option(value="Kevin") Kevin 
+          option(value="Christle") Christle 
+          option(value="Denie") Denie 
+  
+      label.lab(for="amount") Enter Amount: 
+  
+      input#amount(type="number" name="amount" placeholder="Amount")
+
+      button.btn#sendbtn(type="submit" onclick= "sendmoney()") Send
+      button.btn
+        a(href='/allusers') Back 
+
+    script.
+      //- document.addEventListener("DOMContentLoaded",
+      //- function find() {
+      //-   var btn = document.getElementById("findb");
+      //-   var form = document.getElementById("form");
+
+      //-   if(form.style.display == "none"){
+      //-   form.style.display = "flex";
+      //-   } else{
+      //-     form.style.display = "none";
+      //-   }
+        
+      //- }
+
+
+      function sendmoney() {
+        //- console.log(transfer.balance);
+        var money = parseInt(document.getElementById("amount").value);
+        console.log(money);
+        var bal = parseInt(document.getElementById("senderbalance").value);
+        console.log(bal);
+
+
+        if(money > bal) {
+          alert("Insufficient Balance");
+     }
+        else if(money<=0){
+          alert("Please enter a real amount");
+     }
+        else{
+          alert("Transfer Succesfully Done");
+      }
+        
+     }
+      //- );
